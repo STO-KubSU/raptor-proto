@@ -6,17 +6,25 @@ option go_package = "github.com/STO-KubSU/raptor-proto/userpb";
 
 service UserService {
   rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
 }
 
 message User{
-    int32 id = 1;
+    optional int32 id = 1;
     string name = 2;
+    optional string email = 3;
 }
 
 message GetUserRequest {
   int32 id = 1;
 }
-
 message GetUserResponse {
   User user = 1;
+}
+
+message CreateUserRequest{
+    User user = 1;
+}
+message CreateUserResponse{
+    int32 id = 1;
 }

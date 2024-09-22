@@ -6,17 +6,21 @@ option go_package = "github.com/STO-KubSU/raptor-proto/orderpb";
 
 import "google/protobuf/timestamp.proto";
 
-// Определяем сообщение для информации о пользователе
-message User {
-  int32 id = 1;
-  optional string name = 2;
-  optional string email = 3;
+enum OrderStatus{
+    Cancelled = 0;
+    Created = 1;
+    Error = 400;
+}
+
+message OrderHead{
+    OrderStatus orderStatus = 1;
+    string message = 2;
 }
 
 // Определяем сообщение для информации о товаре
 message Product {
   int32 id = 1;
-  optional string name = 2;
+  string name = 2;
   int32 quantity = 3;
   float price = 4;
 }
@@ -24,10 +28,11 @@ message Product {
 // Определяем сообщение для информации о заказе
 message Order {
   int32 id = 1;
-  User user = 2;
+  int32 userId = 2;
   repeated Product products = 3;
-  optional float total_price = 4;
-  google.protobuf.Timestamp created_at = 5;
+  optional float totalPrice = 4;
+  google.protobuf.Timestamp createdAt = 5;
+  OrderHead orderHead = 6;
 }
 
 // Запрос для получения заказа по ID
@@ -42,7 +47,7 @@ message GetOrderResponse {
 
 // Запрос для создания нового заказа
 message CreateOrderRequest {
-  User user = 1;
+  int32 userId = 1;
   repeated Product products = 2;
 }
 
