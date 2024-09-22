@@ -1,4 +1,4 @@
-module github.com/c4erries/raptor-proto
+module github.com/STO-KubSU/raptor-proto
 
 go 1.23.0
 
