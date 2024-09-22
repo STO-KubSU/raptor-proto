@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 enum OrderStatus{
     Cancelled = 0;
     Created = 1;
+    Dellivered = 2;
     Error = 400;
 }
 
