@@ -46,7 +46,7 @@ message CreateOrderRequest {
 
 // Ответ для создания нового заказа
 message CreateOrderResponse {
-  Order order = 1;
+  int32 id = 1;
 }
 
 // Определяем сервис для работы с заказами
