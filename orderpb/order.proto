@@ -29,13 +29,13 @@ message Order {
 }
 
 // Запрос для получения заказа по ID
-message GetOrderRequest {
-  int32 id = 1;
+message GetOrdersRequest {
+  repeated int32 id = 1;
 }
 
 // Ответ для запроса получения заказа
-message GetOrderResponse {
-  Order order = 1;
+message GetOrdersResponse {
+  repeated Order order = 1;
 }
 
 // Запрос для создания нового заказа
@@ -49,11 +49,14 @@ message CreateOrderResponse {
   int32 id = 1;
 }
 
+
+
 // Определяем сервис для работы с заказами
 service OrderService {
   // Метод для получения заказа по ID
-  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
-  
+  rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse);
+
   // Метод для создания нового заказа
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+
 }
